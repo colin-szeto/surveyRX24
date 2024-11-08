@@ -185,6 +185,7 @@ zoom on;
 % Enable interactive clicking to get coordinates
 disp('Click on the map to get latitude and longitude coordinates. Press Enter to stop.');
 counter = 1;
+all_info = []
 while true
     [x, y] = ginput(1);
     if isempty(x)
@@ -192,6 +193,8 @@ while true
     end
     [lat, lon] = minvtran(x, y);
     point_s = scatterm(lat, lon,4, 'red');
+    textm(lat, lon, sprintf('%d',counter), 'VerticalAlignment', 'bottom', 'HorizontalAlignment', 'right');
+
     legendLabels = [legendLabels; {sprintf('Lat: %.6f, Lon: %.6f', lat, lon)}];
     point_ss = [point_ss, point_s];
     legendHandles = [point_ss(1:2:end- counter), point_s];
@@ -199,6 +202,9 @@ while true
     legend(legendHandles, legendLabels);
     fprintf('Latitude, Longitude, %.6f,  %.6f', lat, lon);
     counter = counter + 1;
+
+    info = [counter lat lon]
+    all_info = [all_info; info]
 end
 
 % Intersection function
