@@ -29,20 +29,22 @@ points_of_interest = np.array([
     #[27.374887, -82.452340],  # Below road    
     #[27.375603, -82.452284],  # White road
     #[27.376269, -82.452381]   # Top northwest corner
-    [27.374460, -82.452445],
-    [27.374621, -82.452445],
-    [27.374654, -82.452445],
-    [27.374681, -82.452445],
-    [27.374752, -82.452445],
-    [27.374790, -82.452445],
-    [27.374821, -82.452445],
-    [27.374931, -82.452445],
-    [27.374990, -82.452445],
-    [27.374882, -82.452445],
-    [27.374784, -82.452445],
-    [27.374706, -82.452445], 
-    [27.374636, -82.452445],
-    [27.374547, -82.453445],
+    [27.376097, -82.452812],#Red Edge Buoy#1
+    [27.376097, -82.452912],#Red Edge Buoy#2
+    [27.376097, -82.45305],#Red Edge Buoy#3
+    [27.376097, -82.453198],#Red Edge Buoy#4
+    [27.376097, -82.453285],#Red Edge Buoy#5
+    [27.376097, -82.453431],#Red Edge Buoy#6
+    [27.376097, -82.453517],#Red Edge Buoy#7
+    [27.376097, -82.453684],#Red Edge Buoy#8
+    [27.376097, -82.453822],#Red Edge Buoy#9
+    [27.376097, -82.453965],#Red Edge Buoy#10
+
+
+   # [27.374784, -82.452445],
+   # [27.374706, -82.452445], 
+   # [27.374636, -82.452445],
+   # [27.374547, -82.453445],
 
     
     
@@ -55,28 +57,29 @@ ax.scatter(poi_pixels[:, 0], poi_pixels[:, 1], c='g', s=10, label="Points of Int
 
 # Boundaries (each row is a set of lon/lat points)
 boundaries_alpha = np.array([
-    [-82.45274, -82.45373, -82.45374, -82.45273],
-    [27.37550, 27.37552, 27.37472, 27.37477]
+    [-82.452467, -82.452441, -82.45374, -82.45273],
+    [27.375102, 27.374394, 27.37472, 27.37477]
 ])
 
-boundaries_beta = np.array([
-    [-82.45268, -82.45265, -82.45375, -82.45374],
-    [27.37455, 27.37377, 27.37371, 27.37452]
-])
+#boundaries_beta = np.array([
+#    [-82.45268, -82.45265, -82.45375, -82.45374],
+#    [27.37455, 27.37377, 27.37371, 27.37452]
+#])
 
-boundaries_charlie = np.array([
-    [-82.45268, -82.45265, -82.45375, -82.45374],
-    [27.37455, 27.37377, 27.37371, 27.37452]
-])
+#boundaries_charlie = np.array([
+ #   [-82.45268, -82.45265, -82.45375, -82.45374],
+  #  [27.37455, 27.37377, 27.37371, 27.37452]
+#])
 
 # Function to plot boundary regions
 def plot_boundary(ax, boundary, color, linestyle="-"):
     pixels = np.array([latlon_to_pixels(lat, lon) for lat, lon in zip(boundary[1], boundary[0])])
     ax.plot(pixels[:, 0], pixels[:, 1], color=color, linestyle=linestyle)
 
+
 plot_boundary(ax, boundaries_alpha, 'magenta')
-plot_boundary(ax, boundaries_beta, 'magenta')
-plot_boundary(ax, boundaries_charlie, 'black', "--")
+#plot_boundary(ax, boundaries_beta, 'magenta')
+#plot_boundary(ax, boundaries_charlie, 'black', "--")
 
 # Convert lat/lon to pixel coordinates for plotting
 poi_pixels = np.array([map_obj.to_pixels(lat, lon) for lat, lon in points_of_interest])
@@ -90,6 +93,17 @@ ax.scatter(x_coords, y_coords, c='g', s=50, marker='o', label="Points of Interes
 # Add labels for each point
 for i, (x, y) in enumerate(zip(x_coords, y_coords)):
     ax.text(x, y, f" P{i+1}", fontsize=10, color="black", ha="right")
+
+
+
+## Draw lines from points based on angles
+#for i, (lat, lon) in enumerate(points_of_interest):
+#    origin_x, origin_y = latlon_to_pixels(lat, lon)
+#    for angle in angles_deg[i]:
+#        dx, dy = angle_to_vector(angle)
+#        ax.arrow(origin_x, origin_y, dx, -dy, head_width=5, head_length=5, fc='r', ec='r')
+
+
 
 ## Define angles for each point
 #angles_deg = [
