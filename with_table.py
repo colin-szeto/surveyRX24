@@ -140,10 +140,6 @@ def clear_all(event):
         check_ax.remove()
         check_ax = None
 
-    if "remove_button_ax" in globals() and remove_button_ax is not None:
-        remove_button_ax.remove()
-        remove_button_ax = None
-
     # Update table & UI safely
     update_table()
     fig.canvas.draw()
@@ -152,14 +148,12 @@ def clear_all(event):
 
 # Function to update the table and checkboxes
 def update_table():
-    global table_ax, check_ax, checkbuttons, remove_button_ax
+    global table_ax, check_ax, checkbuttons
 
     if "table_ax" in globals() and table_ax:
         table_ax.remove()
     if "check_ax" in globals() and check_ax:
         check_ax.remove()
-    if "remove_button_ax" in globals() and remove_button_ax:
-        remove_button_ax.remove()
 
     if not layer_labels:
         return
@@ -180,10 +174,6 @@ def update_table():
     checkbuttons = CheckButtons(check_ax, layer_labels, visibility_flags)
     checkbuttons.on_clicked(toggle_visibility)
 
-    # Add "Remove Selected" button in the table area
-    remove_button_ax = fig.add_axes([0.85, 0.03, 0.12, 0.05])
-    remove_button = Button(remove_button_ax, 'Remove Selected')
-    remove_button.on_clicked(remove_selected)
 
 # Buttons for connecting points and clearing all
 ax_button1 = plt.axes([0.7, 0.05, 0.1, 0.05])
