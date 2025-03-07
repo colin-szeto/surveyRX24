@@ -1,0 +1,9 @@
+
+#course boundaries for Alpha, Bravo, Charlie recorded on 03/07/2025
+# Only Latitude is different
+
+27.375102,-82.452467 #Right of Alpha
+27.374394,-82.452441 #Left of Alpha
+27.374377,-82.452435 #Right of Beta
+27.373693,-82.453285 #Left of Beta
+
