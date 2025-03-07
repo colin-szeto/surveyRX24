@@ -6,4 +6,5 @@
 27.374394,-82.452441 #Left of Alpha
 27.374377,-82.452435 #Right of Beta
 27.373693,-82.453285 #Left of Beta
-
+27.373644,-82.452416 #Right of Charlie
+27.372987,-82.452426 #Left of Charlie
