@@ -140,7 +140,7 @@ grid_lines = np.array([
     
 # to generate grid lines
 ref_point = [27.375102,-82.452467]  
-for i in range(0,50,1):
+for i in range(0,20,1):
     # create bouys
     lat_n, lon_n = destination_point(ref_point[0], ref_point[1], 180, 5)
     new_row = [lat_n, lon_n]
@@ -153,7 +153,7 @@ for pair in grid_lines:
     
 # vertical lines 
 ref_point = [27.375102,-82.452467]  
-for i in range(0,50,1):
+for i in range(0,20,1):
     # create bouys
     lat_n, lon_n = destination_point(ref_point[0], ref_point[1], 270, 5)
     new_row = [lat_n, lon_n]
@@ -164,11 +164,10 @@ for i in range(0,50,1):
 for pair in grid_lines:
     draw_line_vert(pair[0], pair[1],"#4DBEEE")
 
-# to generate grid lines
 
-reference_bouys_pixels = np.array([map_obj.to_pixels(lat, lon) for lat, lon in grid_lines])
-x_coords, y_coords = reference_bouys_pixels[:, 0], reference_bouys_pixels[:, 1] # Extract x and y coordinates
-ax.scatter(x_coords, y_coords, c='black', s=1, marker='o', label="grid_lines") # Plot points of interest
+#reference_bouys_pixels = np.array([map_obj.to_pixels(lat, lon) for lat, lon in grid_lines])
+#x_coords, y_coords = reference_bouys_pixels[:, 0], reference_bouys_pixels[:, 1] # Extract x and y coordinates
+#ax.scatter(x_coords, y_coords, c='black', s=1, marker='o', label="grid_lines") # Plot points of interest
 
 # Convert lat/lon to pixel coordinates for plotting
 reference_bouys_pixels = np.array([map_obj.to_pixels(lat, lon) for lat, lon in reference_bouys])
