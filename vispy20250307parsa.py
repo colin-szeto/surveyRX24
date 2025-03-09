@@ -50,7 +50,7 @@ all_points = np.array([
 
 ])
 
-points_of_interest = np.array(all_points[:,0:1])
+points_of_interest = np.array(all_points[:,0],all_points[:,1])
 print(points_of_interest)
 """
 # Points of interest (latitude, longitude)
