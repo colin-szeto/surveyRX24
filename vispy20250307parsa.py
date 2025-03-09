@@ -25,38 +25,34 @@ def latlon_to_pixels(lat, lon):
 fig, ax = plt.subplots(figsize=(8, 8))
 ax.imshow(map_obj.to_numpy(), extent=[0, map_obj.w, map_obj.h, 0])
 
-points_of_interest= np.array([
+all_points = np.array([
 
-[27.374555386506167, -82.45305877905854 ],#1
-[27.374620996226714, -82.45320454579398 ],
-[27.374653996226705, -82.45320454602049 ],
-[27.374680996079057, -82.45322480077132 ],
-[27.3747519958521, -82.45325518313939   ],
-[27.37478999577499, -82.45326531071034  ],
-[27.37482099577498, -82.45326531094014  ],
-[27.374930996226663, -82.45320454792189 ],
-[27.374989996921023, -82.45310327521662 ],
-                                        
-[27.374989999086356, -82.45295136555124 ],#10
-[27.37488199908636, -82.45295136505702  ],#11
-[27.374783998973435, -82.45298174648507 ],#12
-[27.374705998973443, -82.45298174610672 ],#13
-[27.374783999192704, -82.45292098273204 ],#14
-[27.374705999192717, -82.45292098239653 ],#15
-[27.37488199908636, -82.45295136505702  ],#16
-[27.374989999086356, -82.45295136555124 ],#17
-[27.374818408112716, -82.45276979332048 ],
-[27.374688612269573, -82.45280559836623 ],
-[27.374508816417304, -82.45284140314885 ],
-
-
-
-
-[27.374546999086373, -82.45395136352404   ] #21
+[27.374555386446033, -82.45305691263559,'n1'],
+[27.37462099620054, -82.45315170714741 ,'f1'],
+[27.37465399618349, -82.45317613417298 ,'f2'],
+[27.374680996025212, -82.45318892495796,'f3'],
+[27.374751995793748, -82.45319396842687,'f4'],
+[27.374789995722864, -82.45318695025696,'f5'],
+[27.374820995737448, -82.45316863001318,'f6'],
+[27.374930996199208, -82.45315377335785,'f7'],
+[27.37498999690846, -82.45312538655186 ,'f8'],
+[27.37498999907801, -82.45311439841939 ,'f9'],
+[27.374881999081012, -82.45296573692687,'s1'],
+[27.374783998966773, -82.45286524353757,'s2'],
+[27.374705998966785, -82.45286524350709,'s3'],
+[27.374783999190786, -82.45284523200823,'s4'],
+[27.374705999190798, -82.45284523199186,'s5'],
+[27.374881999076116, -82.45287561393224,'s6'],
+[27.374989999076114, -82.45287561398456,'s7'],
+[27.37481840810737, -82.4528607369046  ,'s8'],
+[27.374688612264226, -82.45296573685917,'r1'],
+[27.374508816411954, -82.45296573679623,'r2']
 
 ])
 
-
+points_of_interest = np.array(all_points[:,0:1])
+print(points_of_interest)
+"""
 # Points of interest (latitude, longitude)
 reference_bouys = np.array([
     #[27.374887, -82.452340],  # Below road    
@@ -94,14 +90,15 @@ ref_poin = np.array([
 [27.374514, -82.452339],
 [27.374384, -82.452336],
 [27.374244, -82.452336],
+[27.375603, -82.452284],
 
 ])
 
 
 def destination_point(lat, lon, bearing, distance):
-    """
-    Calculate the destination point given a starting point, bearing, and distance in meters
-    """
+    
+    #Calculate the destination point given a starting point, bearing, and distance in meters
+    
     # convert decimal degrees to radians
     lon, lat, bearing = map(math.radians, [lon, lat, bearing])
 
@@ -204,9 +201,10 @@ for i, (x, y) in enumerate(zip(x_coords, y_coords)): # Add labels for each point
 # Plotting the waypoints
 poi_pixels = np.array([latlon_to_pixels(lat, lon) for lat, lon in points_of_interest])
 ax.scatter(poi_pixels[:, 0], poi_pixels[:, 1], c='g', s=10, label="Waypoints")
-x_coords, y_coords = poi_pixels[:, 0], poi_pixels[:, 1]
-for i, (x, y) in enumerate(zip(x_coords, y_coords)):
-   ax.text(x, y, f" WP {i+1}", fontsize=10, color="black", ha="right")
+x_coords, y_coords, names = poi_pixels[:, 0], poi_pixels[:, 1], points_of_interest[:, 2]
+print(names)
+#for i, (x, y,n) in enumerate(zip(x_coords, y_coords,names)):
+#   ax.text(x, y, f"WP {n}", fontsize=10, color="black", ha="right")
    
 # boundary pylongs 
 reference_bouys_pixels = np.array([map_obj.to_pixels(lat, lon) for lat, lon in boundary_bouys])
@@ -222,3 +220,4 @@ for i, (x, y) in enumerate(zip(x_coords, y_coords)): # Add labels for each point
 ax.set_title("Latitude and Longitude Plot for Nathan Benderson Park, Sarasota, FL")
 ax.legend()
 plt.show()
+"""
