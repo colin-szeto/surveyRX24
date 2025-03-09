@@ -99,7 +99,7 @@ def destination_point(lat, lon, bearing, distance):
     lon2 = lon + math.atan2(math.sin(bearing) * math.sin(distance/6371) * math.cos(lat), math.cos(distance/6371) - math.sin(lat) * math.sin(lat2))
     lat2 = math.degrees(lat2)
     lon2 = math.degrees(lon2)
-    print("{}, {}".format(lat2, lon2))
+    #print("{}, {}".format(lat2, lon2))
     return lat2, lon2
 
 
@@ -150,7 +150,7 @@ for i in range(0,20,1):
     # create bouys
     lat_n, lon_n = destination_point(ref_point[0], ref_point[1], 180, 5)
     new_row = [lat_n, lon_n]
-    print("new_row {}".format(new_row))
+    #print("new_row {}".format(new_row))
     grid_lines = np.vstack([grid_lines,new_row])
     ref_point = destination_point(ref_point[0], ref_point[1], 180, 5)
     
@@ -163,7 +163,7 @@ for i in range(0,20,1):
     # create bouys
     lat_n, lon_n = destination_point(ref_point[0], ref_point[1], 270, 5)
     new_row = [lat_n, lon_n]
-    print("new_row {}".format(new_row))
+    #print("new_row {}".format(new_row))
     grid_lines = np.vstack([grid_lines,new_row])
     ref_point = destination_point(ref_point[0], ref_point[1], 270, 5)
     
